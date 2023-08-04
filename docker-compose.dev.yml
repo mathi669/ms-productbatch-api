@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  consulta-ms:
+    container_name: template-simple-project-ms
+    build:
+        context: ./
+        dockerfile: docker/dev.Dockerfile
+    command: npm run dev
+    depends_on:
+      - mongo
+    volumes:
+      - ./src:/home/app/src
+    ports: 
+      - '3000:3000'
+
+  mongo:
+    container_name: template-simple-project-mongo
+    image: mongo
+    command: mongod --port 27019
+    ports: ['27019:27019']
+    volumes:
+      - ./data:/data/db

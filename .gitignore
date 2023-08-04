@@ -1,0 +1,11 @@
+node_modules
+dist
+.env
+package-lock.json
+.nyc_output
+coverage
+logs
+data
+launch.json
+tasks.json
+service_account.json

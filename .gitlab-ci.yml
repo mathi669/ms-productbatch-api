@@ -1,0 +1,11 @@
+##add templates##
+---
+include:
+  - project: "derco/devsecops/herramientas/templates/gitlab-ci-templates"
+    ref: 5.1.0
+    file: "/default/default.gitlab-ci.yml"
+
+variables:
+  PROJECT_LENGUAJE: "typescript"
+  SONAR_EXCLUSION: "src/shared/**/*.*,src/server.ts,src/Routes/**/*.*,src/Services/**/*.*"
+

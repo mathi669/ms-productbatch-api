@@ -1,0 +1,258 @@
+openapi: 3.1.0
+x-stoplight:
+  id: 3dhw6m5ybg4qv
+info:
+  title: msr-product-management
+  version: '1.0'
+  summary: Product and price information management
+  description: Microservice to manage all the information of a product and price
+  contact:
+    name: Omar Vergara
+    email: e-overgara@derco.cl
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /product:
+    post:
+      summary: ''
+      operationId: post-product
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  product: {}
+                  prices: {}
+              properties:
+                product:
+                  $ref: '#/components/schemas/product'
+                price:
+                  $ref: '#/components/schemas/price'
+        description: information from product and price
+      description: manage all the information of a product and price
+components:
+  schemas:
+    product:
+      type: object
+      x-examples:
+        example-1:
+          ExternalId: CL004-111394-F06CO6D01XG
+          BusinessId: CL004
+          ProductType: Model
+          ProductCode: F06CO6D01
+          ExternalProductCode: F06CO6D01
+          ProductName: 640i Gran CoupÃ©
+          ProductDescription: 640i Gran CoupÃ©
+          ProductFamily: Passenger
+          Active: 'true'
+          Brand: BMW
+          RelatedProductCode: ''
+          Model: ''
+          ModelFamily: Serie 6
+          ModelYear: '2020'
+          BodyStyle: ''
+          EngineType: ''
+          TransmissionType: Automatic
+          FuelType: Petrol
+          NumberOfCylinders: Germany
+          CountryOfOrigin: ''
+          Valves: ''
+          Torque: '319'
+          Power: '2979'
+          Displacement: ''
+          Pistons: ''
+          EnginePosition: ''
+          MaxSpeed: ''
+          Traction: ''
+          Steering: ''
+          FrontSuspension: ''
+          RearSuspension: ''
+          FrontBrakes: ''
+          RearBrakes: ''
+          Equipment: ''
+          MinimumDistanceToGround: ''
+          LengthWidthHeight: ''
+          ModelVariantCode: ''
+          ModelVariantDescription: ''
+          ManufactureYear: ''
+      properties:
+        ExternalId:
+          type: string
+          example: CL004-111394-F06CO6D01XG
+        BusinessId:
+          type: string
+          example: CL004
+        ProductType:
+          type: string
+          example: Model
+        ProductCode:
+          type: string
+          example: F06CO6D01
+        ExternalProductCode:
+          type: string
+          example: F06CO6D01
+        ProductName:
+          type: string
+          example: 640i Gran CoupÃ©
+        ProductDescription:
+          type: string
+          example: 640i Gran CoupÃ©
+        ProductFamily:
+          type: string
+          example: Passenger
+        Active:
+          type: boolean
+        Brand:
+          type: string
+          example: BMW
+        RelatedProductCode:
+          type: string
+        Model:
+          type: string
+        ModelFamily:
+          type: string
+          example: Serie 6
+        ModelYear:
+          type: string
+          example: '2020'
+        BodyStyle:
+          type: string
+        EngineType:
+          type: string
+        TransmissionType:
+          type: string
+          example: Automatic
+        FuelType:
+          type: string
+          example: Petrol
+        NumberOfCylinders:
+          type: string
+          example: Germany
+        CountryOfOrigin:
+          type: string
+        Valves:
+          type: string
+        Torque:
+          type: string
+          example: '319'
+        Power:
+          type: string
+          example: '2979'
+        Displacement:
+          type: string
+        Pistons:
+          type: string
+        EnginePosition:
+          type: string
+        MaxSpeed:
+          type: string
+        Traction:
+          type: string
+        Steering:
+          type: string
+        FrontSuspension:
+          type: string
+        RearSuspension:
+          type: string
+        FrontBrakes:
+          type: string
+        RearBrakes:
+          type: string
+        Equipment:
+          type: string
+        MinimumDistanceToGround:
+          type: string
+        LengthWidthHeight:
+          type: string
+        ModelVariantCode:
+          type: string
+        ModelVariantDescription:
+          type: string
+        ManufactureYear:
+          type: string
+      examples:
+        - ExternalId: CL004-111394-F06CO6D01XG
+          BusinessId: CL004
+          ProductType: Model
+          ProductCode: F06CO6D01
+          ExternalProductCode: F06CO6D01
+          ProductName: 640i Gran CoupÃ©
+          ProductDescription: 640i Gran CoupÃ©
+          ProductFamily: Passenger
+          Active: true
+          Brand: BMW
+          RelatedProductCode: string
+          Model: string
+          ModelFamily: Serie 6
+          ModelYear: '2020'
+          BodyStyle: string
+          EngineType: string
+          TransmissionType: Automatic
+          FuelType: Petrol
+          NumberOfCylinders: Germany
+          CountryOfOrigin: string
+          Valves: string
+          Torque: '319'
+          Power: '2979'
+          Displacement: string
+          Pistons: string
+          EnginePosition: string
+          MaxSpeed: string
+          Traction: string
+          Steering: string
+          FrontSuspension: string
+          RearSuspension: string
+          FrontBrakes: string
+          RearBrakes: string
+          Equipment: string
+          MinimumDistanceToGround: string
+          LengthWidthHeight: string
+          ModelVariantCode: string
+          ModelVariantDescription: string
+          ManufactureYear: string
+      description: product information
+    price:
+      type: object
+      x-examples:
+        example-1:
+          ExternalId: CL004-111394-F06CO6D01
+          BusinessId: CL004
+          PriceBookName: BMW Chile
+          SellingPrice: '0'
+          CurrencyIsoCode: CLP
+          Active: true
+          TaxScheme: ''
+      properties:
+        ExternalId:
+          type: string
+          example: CL004-111394-F06CO6D01
+        BusinessId:
+          type: string
+          example: CL004
+        PriceBookName:
+          type: string
+          example: BMW Chile
+        SellingPrice:
+          type: integer
+          example: 0
+        CurrencyIsoCode:
+          type: string
+          example: CLP
+        Active:
+          type: boolean
+        TaxScheme:
+          type: string
+      examples:
+        - ExternalId: CL004-111394-F06CO6D01
+          BusinessId: CL004
+          PriceBookName: BMW Chile
+          SellingPrice: 0
+          CurrencyIsoCode: CLP
+          Active: true
+          TaxScheme: string
+      description: price information
