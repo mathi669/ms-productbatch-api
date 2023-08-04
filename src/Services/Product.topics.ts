@@ -21,68 +21,7 @@ class ProductTopics implements TopicI {
     this.pubSubClient = new PubSub()
   }
 
-  /**
-   * Metodo para publicar la data como un evento en una cola
-   * @param data parametro recibido para agregarlo como informacion al evento que se encolara,
-   *  debe ser un json
-   * @example data: { "message":"hola mundo"}
-   */
-  public async publish (data: any, dercoHeaders: any): Promise<void> {
-
-    const sbClient = new ServiceBusClient(Environments.config().SERVICE_BUS_CONNECTION)
-
-    const sender = sbClient.createSender(Environments.config().TOPIC);
-
-    const id = uuidv1()
-    const idTrace = dercoHeaders['x-derco-idtrace']
-    const message = {
-      id,
-      eventType: 'ms.peduct.batch',
-      data,
-      dataVersion: '1',
-      metadataVersion: '1',
-      meta: {
-        ...dercoHeaders,
-        type: '',
-        publisher: 'ProductBatch',
-        retries: 0,
-        data: {}
-      },
-      eventTime: moment().format()
-    }
-
-    message.meta.type = 'ProductBacth'
-    message.meta.publisher = 'ProductBacth'
-    message.meta.retries = 0
-
-    let batch: ServiceBusMessageBatch = await sender.createMessageBatch();
-    batch.tryAddMessage({ body: message });
-
-    await sender.sendMessages(batch)
-    // se publica un mensaje, este debe ir como string
-    const dataBuffer = Buffer.from(JSON.stringify(message))
-    let messageId = 'err'
-    try {
-      messageId = await this.pubSubClient
-        .topic(Environments.config().TOPIC)
-        .publishMessage({ data: dataBuffer })
-      LoggerApp.logger(
-        'info',
-        null,
-                  `Event FILE with id ${messageId} has PUBLISHED`,
-                  idTrace,
-                  true
-      )
-    } catch (err) {
-      LoggerApp.logger(
-        'error',
-        999,
-                `${Environments.config().TOPIC} - ${err}`,
-                dercoHeaders['x-derco-idtrace'],
-                true
-      )
-    }
-  }
+ 
   receive = async () => {
 
     const sbClient = new ServiceBusClient(Environments.config().SERVICE_BUS_CONNECTION);

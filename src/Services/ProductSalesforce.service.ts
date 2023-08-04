@@ -1,5 +1,4 @@
 import axios from "axios";
-import { config } from "dotenv";
 import Environments from "shared/environments";
 import LoggerApp from "shared/log/LoggerApp";
 
@@ -10,11 +9,23 @@ export default class ProductToSalesforceService {
         this.axios = axios.create();
     }
 
-    notifySalesForce = async(data: any, idTrace: string) => {
+    notifySalesForce = async(json: any, idTrace: string):Promise<{status: any, data: any}> => {
         const config = {
             method: 'post',
-            url: Environments.config().SUBSCRIPTION
+            url: Environments.config().SUBSCRIPTION,
+            headers:{
+                "Content-Type": 'application/json'
+            },
+            data: json
         }
+
+        // if(config.url === Environments.config().SUBSCRIPTION){
+        //     return config.url
+        // } else {
+            
+        // }
+
+        return this.notify(config, 'product', idTrace)
     }
 
     private notify = async(config: any, useCase: string, idTrace: string) => {

@@ -6,6 +6,11 @@ import ProductToSalesforceService from '../Services/ProductSalesforce.service'
 
 class Product {
   topicClient: ProductTopics
+  productToSalesforceService: ProductToSalesforceService
+
+  constructor(){
+    this.productToSalesforceService = new ProductToSalesforceService()
+  }
 
   public async create (body,_idTrace): Promise<any> {
     
