@@ -9,7 +9,7 @@ export default class ProductToSalesforceService {
         this.axios = axios.create();
     }
 
-    notifySalesForce = async(json: any, idTrace: string):Promise<{status: any, data: any}> => {
+    salesForceConecction = async(json: any, idTrace: string):Promise<{status: any, data: any}> => {
         const config = {
             method: 'post',
             url: Environments.config().SUBSCRIPTION,
